@@ -1,0 +1,80 @@
+<div class="flex-1 flex flex-col justify-between">
+    <div class="flex flex-col items-center">
+        <div class="container flex flex-col px-8 md:px-32 py-8">
+            <div class="flex flex-col pt-9 md:pt-14 text-slate-900">
+                <h1 class="font-black text-3xl md:text-8xl">
+                    {{ Site.Get("slogan") }}
+                </h1>
+                <span class="font-semibold py-4 text-gray-700 text-base md:text-lg md:text-xl">
+                    {{ Page.Get("call_to_action") }}
+                </span>
+            </div>
+            <a href="/contact-us" class="flex flex-row items-center space-x-4 pb-8 md:pb-12 group ">
+                <div class="hover:scale-125 hover:px-7 ease-in duration-200 flex-col items-center">
+                    <div class="flex flex-row items-center">
+                        <span class="font-black text-gray-700 text-xl md:text-3xl text-center">
+                            Get in touch
+                        </span>
+                        <img src="/public/icons/waving-hand.svg" class="group-hover:animate-wiggle w-12 h-12 mx-4"/>
+                    </div>
+                </div>
+            </a>
+            {% if Post.Form.Name() == "sign-up" %}
+            <div class="flex flex-col items-center md:pb-12">
+                <div class="flex flex-row justify-center">
+                    <img src="/public/icons/ballon.svg" class="animate-bounce w-8 h-8"/>
+                </div>
+                <span class="font-black text-gray-100 text-lg md:text-xl text-center bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-full px-4">
+                    {{ Post.Data.Get("email") }}
+                </span>
+                <span class="font-semibold text-gray-700 text-lg md:text-xl text-center pt-4">
+                    Thanks for subscribing to our newsletter
+                </span>
+            </div>
+            {% else %}
+            <form class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:justify-center items-center space-x-4" method="POST" action="/sign-up">
+                <input class="rounded-full border-2 px-4 py-2 border-gray-900" placeholder="Email Newsletter" name="email"/>
+                <button class="rounded-full bg-gray-900 text-white px-8 py-2 font-black" type="submit">
+                    Subscribe
+                </button>
+            </form>
+            {% endif %}
+        </div>
+        <div class="px-8 md:px-0 container flex flex-col">
+            <div class="pt-12 flex flex-row justify-start">
+                <span class="font-black text-xl text-slate-800">Services</span>
+            </div>
+            <div class="grid grid-cols-1 py-4 md:grid-cols-2 lg:grid-cols-3 space-y-8 md:space-y-0 gap-2 md:gap-4">
+                {% for SubPage in Pager.Open("services").Collection().Entries() %}
+                <div class="w-full flex justify-center p-4 border-4 border-{{SubPage.Get('color', 'red')}}-500 shadow hover:shadow-2xl rounded-lg">
+                    <a href="/contact-us"  class="flex py-4 flex-col w-full rounded-lg"> 
+                        <div class="px-4 flex flex-row items-center">
+                            <img src="/static/images/{{ SubPage.Get('icon')}}" class="w-8 h-8"/>
+                            <span class="font-black text-gray-900 text-md">
+                                {{ SubPage.Get("title") }}
+                            </span>
+                        </div>
+                        <div class="px-4 pt-2">
+                            <span class="font-black text-gray-200 text-xs bg-{{SubPage.Get('color', 'red')}}-500 px-4 py-2 rounded-full">
+                                {{ SubPage.Get("plan") | uppercase }}
+                            </span>
+                        </div>
+                        <div class="p-4 md:h-48 lg:h-32">
+                            <span class="text-gray-900 text-base">
+                                {{ SubPage.Get("call_to_action") | markdown }}
+                            </span>
+                        </div>
+                    </a>
+                </div>
+                {% endfor  %}
+            </div>
+            {% if false %}
+            <div class="border-red-500 border-green-500 border-pink-500 border-blue-500 border-fuchsia-500 border-teal-500 border-sky-500 border-indigo-500">
+            </div>
+            <div class="bg-red-500 bg-green-500 bg-pink-500 bg-blue-500 bg-fuchsia-500 bg-teal-500 bg-sky-500 bg-indigo-500">
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    {% include "partials/footer.html" %}
+</div>
