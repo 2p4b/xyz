@@ -46,7 +46,7 @@
             </div>
             <div class="grid grid-cols-1 py-4 md:grid-cols-2 lg:grid-cols-3 space-y-8 md:space-y-0 gap-2 md:gap-4">
                 {% for SubPage in Pager.Open("services").Collection().Entries() %}
-                <div class="w-full flex justify-center p-4 border-4 border-{{SubPage.Get('color', 'red')}}-500 shadow hover:shadow-2xl rounded-lg">
+                <div class="w-full flex justify-center p-4 border-4 border-slate-900 shadow hover:shadow-2xl rounded-lg">
                     <a href="/contact-us"  class="flex py-4 flex-col w-full rounded-lg"> 
                         <div class="px-4 flex flex-row items-center">
                             <img src="/static/images/{{ SubPage.Get('icon')}}" class="w-8 h-8"/>
