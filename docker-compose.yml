@@ -1,0 +1,16 @@
+version: '3.1'
+
+networks:
+    www:
+        name: www
+        external: true
+
+services:
+    prod.outburst:
+        image: ghcr.io/2p4b/julien
+        restart: always
+        command: "julien --host=0.0.0.0 --port=1234"
+        networks:
+            - www
+        volumes:
+            - /root/outburst/site:/www
