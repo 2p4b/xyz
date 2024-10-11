@@ -3,7 +3,7 @@ module.exports = {
     content: ["./views/**/*.html", "./partials/**/*.html", "./layouts/**/*.html"],
     theme: {
         fontFamily: {
-            'sans': ['"Nunito Sans"', 'sans-serif', 'Arial']
+            'sans': ['"Inter"', 'sans-serif', 'Arial']
         },
         extend: {
             keyframes: {

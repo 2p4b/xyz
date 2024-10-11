@@ -1,7 +1,7 @@
 ---
 title: IoT Dev
 plan: IoT
-ease: 25
+ease: 6
 ireturns: 14.20
 color: sky
 icon: control-knobs.svg

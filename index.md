@@ -1,7 +1,7 @@
 ---
-name: Outburst Media
-title: Outburst Media
-slogan: Developing Ideas, Amplifying Voices
+name: Outburst
+title: Outburst
+slogan: Transform Your Business with Expert Software
 url: http://localhost:1234
 lang: en-US
 theme: light

@@ -1,28 +1,38 @@
 <div class="flex-1 flex flex-col justify-between">
+    <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script> 
+
     <div class="flex flex-col items-center">
-        <div class="container flex flex-col px-8 md:px-32 py-8">
-            <div class="flex flex-col pt-9 md:pt-14 text-slate-900">
-                <h1 class="font-black text-3xl md:text-8xl">
-                    {{ Site.Get("slogan") }}
-                </h1>
-                <span class="font-semibold py-4 text-gray-700 text-base md:text-lg md:text-xl">
-                    {{ Page.Get("call_to_action") }}
-                </span>
-            </div>
-            <a href="/contact-us" class="flex flex-row items-center space-x-4 pb-8 md:pb-12 group ">
-                <div class="hover:scale-125 hover:px-7 ease-in duration-200 flex-col items-center">
-                    <div class="flex flex-row items-center">
-                        <span class="font-black text-gray-700 text-xl md:text-3xl text-center">
-                            Get in touch
+        <div class="container flex flex-col px-8 md:px-32 py-8 md:py-32">
+            <div class="flex flex-col md:flex-row">
+                <div class="flex flex-col justify-center">
+                    <div class="flex flex-col text-slate-900">
+                        <h1 class="font-black text-3xl md:text-6xl">
+                            {{ Site.Get("slogan") }}
+                        </h1>
+                        <span class="font-semibold py-4 text-gray-700 text-base md:text-lg md:text-xl">
+                            {{ Page.Get("call_to_action") }}
                         </span>
-                        <img src="/public/icons/waving-hand.svg" class="group-hover:animate-wiggle w-12 h-12 mx-4"/>
                     </div>
+                    <a href="/contact-us" class="flex flex-row items-center space-x-4 pb-8 md:pb-12 md:group">
+                        <div class="hover:scale-125 hover:px-7 ease-in duration-200 flex-col items-center">
+                            <div class="flex flex-row items-center">
+                                <span class="font-black text-gray-700 text-xl md:text-3xl text-center">
+                                    Get in touch
+                                </span>
+                                <img alt="contact-us" src="/public/icons/waving-hand.svg" class="md:group-hover:animate-wiggle w-12 h-12 mx-4 max-sm:animate-wiggle"/>
+                            </div>
+                        </div>
+                    </a>
                 </div>
-            </a>
+                <div class="h-64 md:h-80 flex flex-row justify-end w-full">
+                    <dotlottie-player src="https://lottie.host/3aa811c8-68c0-4bdc-8b4f-3a9b19dfab17/zAHiOSGfPu.json" background="transparent" speed="1"  loop autoplay>
+                    </dotlottie-player>
+                </div>
+            </div>
             {% if Post.Form.Name() == "sign-up" %}
             <div class="flex flex-col items-center md:pb-12">
                 <div class="flex flex-row justify-center">
-                    <img src="/public/icons/ballon.svg" class="animate-bounce w-8 h-8"/>
+                    <img  alt="Thanks for subscribing"src="/public/icons/ballon.svg" class="animate-bounce w-8 h-8"/>
                 </div>
                 <span class="font-black text-gray-100 text-lg md:text-xl text-center bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-full px-4">
                     {{ Post.Data.Get("email") }}
@@ -33,37 +43,51 @@
             </div>
             {% else %}
             <form class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:justify-center items-center space-x-4" method="POST" action="/sign-up">
-                <input class="rounded-full border-2 px-4 py-2 border-gray-900" placeholder="Email Newsletter" name="email"/>
-                <button class="rounded-full bg-gray-900 text-white px-8 py-2 font-black" type="submit">
+                <input class="rounded-md border-1 px-4 py-2 border-gray-200" placeholder="Email Newsletter" name="email"/>
+                <button class="rounded-md bg-gray-900 text-white px-8 py-2 font-black" type="submit">
                     Subscribe
                 </button>
             </form>
             {% endif %}
         </div>
-        <div class="px-8 md:px-0 container flex flex-col">
-            <div class="pt-12 flex flex-row justify-start">
-                <span class="font-black text-xl text-slate-800">Services</span>
-            </div>
-            <div class="grid grid-cols-1 py-4 md:grid-cols-2 lg:grid-cols-3 space-y-8 md:space-y-0 gap-2 md:gap-4">
-                {% for SubPage in Pager.Open("services").Collection().Entries() %}
-                <div class="w-full flex justify-center p-4 border-4 border-slate-900 shadow hover:shadow-2xl rounded-lg">
-                    <a href="/contact-us"  class="flex py-4 flex-col w-full rounded-lg"> 
-                        <div class="px-4 flex flex-row items-center">
-                            <img src="/static/images/{{ SubPage.Get('icon')}}" class="w-8 h-8"/>
-                            <span class="font-black text-gray-900 text-md">
-                                {{ SubPage.Get("title") }}
-                            </span>
+        <div class="px-2 md:px-0 container flex flex-col">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 border-gray-900 border">
+                {% for SubPage in Pager.Open("services").Collection().SortBy("ease").Entries() %}
+                <div class="w-full flex justify-center border border-gray-900 hover:shadow">
+                    <a href="/contact-us"  class="flex flex-col w-full rounded-lg"> 
+                        <div class="px-8 py-8">
+                            <div class="flex flex-row items-center">
+                                <img alt="{{SubPage.Get('plan')}}" src="/static/images/{{ SubPage.Get('icon')}}" class="w-8 h-8"/>
+                                <span class="font-bold text-gray-900 text-lg">
+                                    {{ SubPage.Get("title") }}
+                                </span>
+                            </div>
+                            <div class="pt-2">
+                                <span class="text-sm font-black p-2 bg-{{SubPage.Get('color', 'red')}}-500">
+                                    {{ SubPage.Get("plan") | uppercase }}
+                                </span>
+                            </div>
                         </div>
-                        <div class="px-4 pt-2">
-                            <span class="font-black text-gray-200 text-xs bg-{{SubPage.Get('color', 'red')}}-500 px-4 py-2 rounded-full">
-                                {{ SubPage.Get("plan") | uppercase }}
-                            </span>
+                        {% if SubPage.Has("card_image") %}
+                        <div class="px-8 pb-4 flex flex-col">
+                            <div class="w-full flex justify-center">
+                                <img alt="{{SubPage.Get('plan')}}" src="/static/images/{{ SubPage.Get('card_image')}}"  class="w-48 h-48"/>
+                            </div>
+                            <div class="py-8">
+                                <span class="text-gray-900 text-base">
+                                    {{ SubPage.Get("call_to_action") | markdown }}
+                                </span>
+                            </div>
                         </div>
-                        <div class="p-4 md:h-48 lg:h-32">
-                            <span class="text-gray-900 text-base">
-                                {{ SubPage.Get("call_to_action") | markdown }}
-                            </span>
+                        {% else %}
+                        <div class="px-8 pb-4 flex flex-col">
+                            <div class="py-2">
+                                <span class="text-gray-900 text-base">
+                                    {{ SubPage.Get("call_to_action") | markdown }}
+                                </span>
+                            </div>
                         </div>
+                        {% endif %}
                     </a>
                 </div>
                 {% endfor  %}

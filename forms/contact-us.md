@@ -11,7 +11,7 @@ includes:
 
 schema:
     name: required,min=1,max=32
-    phone: required,e164,min=1,max=32
+    phone: required,e164,min=1,max=15
     email: required,email
     company: required,min=1,max=255
     about: required,min=1,max=255
