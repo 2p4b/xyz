@@ -55,23 +55,23 @@
                 {% for SubPage in Pager.Open("services").Collection().SortBy("ease").Entries() %}
                 <div class="w-full flex justify-center border border-gray-900 hover:shadow">
                     <a href="/contact-us"  class="flex flex-col w-full rounded-lg"> 
-                        <div class="px-8 py-8">
-                            <div class="flex flex-row items-center">
-                                <img alt="{{SubPage.Get('plan')}}" src="/static/images/{{ SubPage.Get('icon')}}" class="w-8 h-8"/>
-                                <span class="font-bold text-gray-900 text-lg">
-                                    {{ SubPage.Get("title") }}
+                        <div class="p-8">
+                            <div class="py-2">
+                                <span class="text-sm font-black p-2 bg-{{SubPage.Get('color', 'red')}}-500 text-gray-50">
+                                    {{ SubPage.Get("plan") | uppercase }}
                                 </span>
                             </div>
-                            <div class="pt-2">
-                                <span class="text-sm font-black p-2 bg-{{SubPage.Get('color', 'red')}}-500">
-                                    {{ SubPage.Get("plan") | uppercase }}
+                            <div class="flex flex-row items-center pt-4">
+                                <img alt="{{SubPage.Get('plan')}}" src="/static/images/{{SubPage.Get('icon')}}" class="w-8 h-8"/>
+                                <span class="font-bold text-gray-900 text-lg">
+                                    {{ SubPage.Get("title") }}
                                 </span>
                             </div>
                         </div>
                         {% if SubPage.Has("card_image") %}
                         <div class="px-8 pb-4 flex flex-col">
                             <div class="w-full flex justify-center">
-                                <img alt="{{SubPage.Get('plan')}}" src="/static/images/{{ SubPage.Get('card_image')}}"  class="w-48 h-48"/>
+                                <img alt="{{SubPage.Get('plan')}}" src="/static/images/{{SubPage.Get('card_image')}}"  class="w-48 h-48"/>
                             </div>
                             <div class="py-8">
                                 <span class="text-gray-900 text-base">
@@ -80,12 +80,10 @@
                             </div>
                         </div>
                         {% else %}
-                        <div class="px-8 pb-4 flex flex-col">
-                            <div class="py-2">
-                                <span class="text-gray-900 text-base">
-                                    {{ SubPage.Get("call_to_action") | markdown }}
-                                </span>
-                            </div>
+                        <div class="px-8 pb-8 flex flex-col">
+                            <span class="text-gray-900 text-base">
+                                {{ SubPage.Get("call_to_action") | markdown }}
+                            </span>
                         </div>
                         {% endif %}
                     </a>
@@ -93,9 +91,7 @@
                 {% endfor  %}
             </div>
             {% if false %}
-            <div class="border-red-500 border-green-500 border-pink-500 border-blue-500 border-fuchsia-500 border-teal-500 border-sky-500 border-indigo-500">
-            </div>
-            <div class="bg-red-500 bg-green-500 bg-pink-500 bg-blue-500 bg-fuchsia-500 bg-teal-500 bg-sky-500 bg-indigo-500">
+            <div class="bg-red-500 bg-green-500 bg-pink-500 bg-blue-500 bg-fuchsia-500 bg-teal-500 bg-sky-500 bg-indigo-500 bg-yellow-500">
             </div>
             {% endif %}
         </div>
