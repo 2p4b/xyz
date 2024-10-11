@@ -47,7 +47,3 @@ We may update this Privacy Policy from time to time. Any changes will be posted 
 
 If you have any questions about this Privacy Policy, please [Contact Us](/contact-us).
 
----
-
-Let me know if you'd like any adjustments or additional sections!
-
