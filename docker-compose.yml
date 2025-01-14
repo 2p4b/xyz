@@ -6,11 +6,11 @@ networks:
         external: true
 
 services:
-    prod.outburst:
+    prod.xyz:
         image: ghcr.io/2p4b/julien
         restart: always
         command: "julien --host=0.0.0.0 --port=1234"
         networks:
             - www
         volumes:
-            - /home/ec2-user/2p4b/site:/www
+            - /home/ec2-user/xyz:/www
