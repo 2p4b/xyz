@@ -1,0 +1,12 @@
+<div class="flex-1 flex flex-col items-center">
+    <div class="flex flex-row justify-center py-8">
+        <img  alt="{{Site.Get('title')}}" src="/static/images/profile.png" class="w-16"/>
+    </div>
+    <div class="container flex flex-col items-center">
+        <div class="prose prose-invert prose-slate md:prose-xl py-14 md:py-24 px-8">
+            {{ Page.Body() | markdown }}
+        </div>
+    </div>
+</div>
+{% include "partials/footer.html" %}
+
