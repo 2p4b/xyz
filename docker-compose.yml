@@ -13,4 +13,4 @@ services:
         networks:
             - www
         volumes:
-            - /root/outburst/site:/www
+            - /home/ec2-user/2p4b/site:/www
